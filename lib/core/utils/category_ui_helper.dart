@@ -111,6 +111,8 @@ class CategoryColors {
   }
 
   static String toHex(Color color) {
-    return '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}';
+    final argb = color.toARGB32();
+    final hex  = (argb & 0x00FFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase();
+    return '#$hex';
   }
 }

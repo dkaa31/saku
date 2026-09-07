@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
-  static const String _fontFamily = 'Inter';
+  static const String _fontFamily = 'Roboto';
 
   // ── Display ───────────────────────────────────────────────────────────────
   static const TextStyle displayLarge = TextStyle(

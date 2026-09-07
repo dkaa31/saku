@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+﻿import 'package:flutter/material.dart';
 import 'app_colors.dart';
 import 'app_text_styles.dart';
 
@@ -17,26 +16,24 @@ class AppTheme {
   static const double spacingXl = 32.0;
 
   // ── Text Theme ─────────────────────────────────────────────────────────────
-  static TextTheme get _textTheme => GoogleFonts.interTextTheme(
-        const TextTheme(
-          displayLarge:   AppTextStyles.displayLarge,
-          displayMedium:  AppTextStyles.displayMedium,
-          headlineLarge:  AppTextStyles.headingLarge,
-          headlineMedium: AppTextStyles.headingMedium,
-          bodyLarge:      AppTextStyles.bodyLarge,
-          bodyMedium:     AppTextStyles.bodyMedium,
-          bodySmall:      AppTextStyles.bodySmall,
-          labelLarge:     AppTextStyles.labelLarge,
-          labelMedium:    AppTextStyles.labelMedium,
-          labelSmall:     AppTextStyles.labelSmall,
-        ),
-      );
+    static const TextTheme _textTheme = TextTheme(
+      displayLarge:   AppTextStyles.displayLarge,
+      displayMedium:  AppTextStyles.displayMedium,
+      headlineLarge:  AppTextStyles.headingLarge,
+      headlineMedium: AppTextStyles.headingMedium,
+      bodyLarge:      AppTextStyles.bodyLarge,
+      bodyMedium:     AppTextStyles.bodyMedium,
+      bodySmall:      AppTextStyles.bodySmall,
+      labelLarge:     AppTextStyles.labelLarge,
+      labelMedium:    AppTextStyles.labelMedium,
+      labelSmall:     AppTextStyles.labelSmall,
+    );
 
   // ── Light Theme ────────────────────────────────────────────────────────────
   static ThemeData get light {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: GoogleFonts.inter().fontFamily,
+      fontFamily: 'Roboto',
       textTheme: _textTheme,
       colorScheme: const ColorScheme.light(
         primary:       AppColors.primary,
@@ -63,7 +60,8 @@ class AppTheme {
         scrolledUnderElevation: 1,
         shadowColor: AppColors.border,
         surfaceTintColor: Colors.transparent,
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: const TextStyle(
+          fontFamily: 'Roboto',
           fontSize: 17,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimary,
@@ -90,7 +88,7 @@ class AppTheme {
       // ── Input ──────────────────────────────────────────────────────────────
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: AppColors.surface, // putih di light mode
         contentPadding: const EdgeInsets.symmetric(
           horizontal: spacingMd,
           vertical: 14,
@@ -116,17 +114,17 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.expense, width: 1.8),
         ),
         labelStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textSecondary,
         ),
         hintStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textDisabled,
         ),
         errorStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 12,
           color: AppColors.expense,
         ),
@@ -148,7 +146,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(radiusMedium),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: 'Roboto',
             fontSize: 15,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.1,
@@ -169,7 +167,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(radiusMedium),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: 'Roboto',
             fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
@@ -181,7 +179,7 @@ class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
           textStyle: const TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: 'Roboto',
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -194,12 +192,12 @@ class AppTheme {
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondary,
         selectedLabelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 11,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 11,
           fontWeight: FontWeight.w400,
         ),
@@ -223,14 +221,17 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radiusLarge),
         ),
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: const TextStyle(
+          fontFamily: 'Roboto',
           fontSize: 17,
           fontWeight: FontWeight.w600,
-          color: AppColors.textPrimary,
+          color: AppColors.textPrimary,   // ← fix: harus gelap di surface putih
+          letterSpacing: -0.2,
         ),
-        contentTextStyle: GoogleFonts.inter(
+        contentTextStyle: const TextStyle(
+          fontFamily: 'Roboto',
           fontSize: 14,
-          color: AppColors.textSecondary,
+          color: AppColors.textSecondary, // ← fix: bukan white
           height: 1.5,
         ),
       ),
@@ -238,7 +239,8 @@ class AppTheme {
       // ── SnackBar ───────────────────────────────────────────────────────────
       snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.textPrimary,
-        contentTextStyle: GoogleFonts.inter(
+        contentTextStyle: TextStyle(
+          fontFamily: 'Roboto',
           fontSize: 13,
           color: Colors.white,
         ),
@@ -255,12 +257,12 @@ class AppTheme {
         indicatorColor: AppColors.primary,
         indicatorSize: TabBarIndicatorSize.tab,
         labelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 13,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 13,
           fontWeight: FontWeight.w400,
         ),
@@ -277,7 +279,7 @@ class AppTheme {
           side: const BorderSide(color: AppColors.border, width: 1.0),
         ),
         textStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textPrimary,
         ),
@@ -288,7 +290,7 @@ class AppTheme {
         backgroundColor: AppColors.background,
         side: const BorderSide(color: AppColors.border),
         labelStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 13,
           color: AppColors.textPrimary,
         ),
@@ -313,11 +315,8 @@ class AppTheme {
   static ThemeData get dark {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: GoogleFonts.inter().fontFamily,
-      textTheme: GoogleFonts.interTextTheme().apply(
-        bodyColor:    AppColors.textPrimaryDark,
-        displayColor: AppColors.textPrimaryDark,
-      ),
+      fontFamily: 'Roboto',
+      textTheme: _textTheme,
       colorScheme: const ColorScheme.dark(
         primary:    AppColors.primary,
         secondary:  AppColors.income,
@@ -338,7 +337,8 @@ class AppTheme {
         scrolledUnderElevation: 1,
         shadowColor: AppColors.borderDark,
         surfaceTintColor: Colors.transparent,
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: const TextStyle(
+          fontFamily: 'Roboto',
           fontSize: 17,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryDark,
@@ -363,7 +363,7 @@ class AppTheme {
 
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.backgroundDark,
+        fillColor: AppColors.surfaceDark, // surface gelap di dark mode
         contentPadding: const EdgeInsets.symmetric(
           horizontal: spacingMd,
           vertical: 14,
@@ -385,14 +385,20 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.expense, width: 1.0),
         ),
         labelStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textSecondaryDark,
         ),
         hintStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textSecondaryDark,
+        ),
+        // Teks yang diketik user di dark mode
+        floatingLabelStyle: const TextStyle(
+          fontFamily: 'Roboto',
+          fontSize: 12,
+          color: AppColors.primary,
         ),
       ),
 
@@ -411,7 +417,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(radiusMedium),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: 'Roboto',
             fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
@@ -423,12 +429,12 @@ class AppTheme {
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textSecondaryDark,
         selectedLabelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 11,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 11,
           fontWeight: FontWeight.w400,
         ),
@@ -460,7 +466,7 @@ class AppTheme {
           side: const BorderSide(color: AppColors.borderDark, width: 1.0),
         ),
         textStyle: const TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Roboto',
           fontSize: 14,
           color: AppColors.textPrimaryDark,
         ),

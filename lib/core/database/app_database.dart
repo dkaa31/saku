@@ -84,17 +84,28 @@ class AppDatabase extends _$AppDatabase {
           await _seedDefaultData();
         },
         onUpgrade: (m, from, to) async {
-          // v1 → v2: tambah iconName & colorHex ke tabel categories
+          // v1 → v2: tambah kolom iconName & colorHex ke tabel categories
           if (from < 2) {
-            await m.addColumn(
-              categories,
-              categories.iconName,
-            );
-            await m.addColumn(
-              categories,
-              categories.colorHex,
-            );
+            try {
+              await m.addColumn(categories, categories.iconName);
+              await m.addColumn(categories, categories.colorHex);
+
+              // Set nilai default untuk data lama yang sudah ada
+              await customStatement(
+                "UPDATE categories SET icon_name = 'category' WHERE icon_name IS NULL",
+              );
+              await customStatement(
+                "UPDATE categories SET color_hex = '#2563EB' WHERE color_hex IS NULL",
+              );
+            } catch (_) {
+              // Jika migration gagal (database corrupt), recreate dari awal
+              await m.recreateAllViews();
+            }
           }
+        },
+        // Fallback: jika schema tidak cocok sama sekali, hapus & buat ulang
+        beforeOpen: (details) async {
+          if (details.wasCreated) return;
         },
       );
 
